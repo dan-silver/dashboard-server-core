@@ -40,7 +40,7 @@ export let find = (authServiceName:string, authServiceId:string, callback:Standa
   });
 };
 
-let create = (user:User, cb:StandardCallback<string>) => {
+export let create = (user:User, cb:StandardCallback<string>) => {
   db.get((db) => {
     db.collection('users').insert(user, (err, docInserted) => {
         cb(err, docInserted.insertedId.toString());
