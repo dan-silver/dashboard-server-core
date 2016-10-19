@@ -42,7 +42,7 @@ export let find = (authServiceName:string, authServiceId:string, callback:Standa
 
 export let create = (user:User, cb:StandardCallback<string>) => {
   db.get((db) => {
-    db.collection('users').insert(user, (err, docInserted) => {
+    db.collection('users').insert(user, (err:any, docInserted:any) => {
         cb(err, docInserted.insertedIds[0].toString());
         db.close();
     });
