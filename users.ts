@@ -16,7 +16,7 @@ let findById = (userId:string, callback:StandardCallback<User>) => {
 };
 
 
-module.exports.getAuthScopes = (userId:string, cb:StandardCallback<string[]>) => {
+export let getAuthScopes = (userId:string, cb:StandardCallback<string[]>) => {
   findById(userId, (err, user) => {
       var allScopes:string[] = [];
 
@@ -30,7 +30,7 @@ module.exports.getAuthScopes = (userId:string, cb:StandardCallback<string[]>) =>
 }
 
 
-module.exports.find = (authServiceName:string, authServiceId:string, callback:StandardCallback<User>) => {
+export let find = (authServiceName:string, authServiceId:string, callback:StandardCallback<User>) => {
   db.get((db) => {
     var pathToId = "auth." + authServiceName + ".id";
     var query:{ [id: string] : string; }  = {};
@@ -51,7 +51,7 @@ let create = (user:User, cb:StandardCallback<string>) => {
   });
 }
 
-module.exports.updateAuthScopes = (userId:string, authServiceName:string, scopes:string[], callback:ErrorCallback) => {
+export let updateAuthScopes = (userId:string, authServiceName:string, scopes:string[], callback:ErrorCallback) => {
   var authInfoPath = "auth." + authServiceName + ".scopes";
   let updateObj:{ [id: string] : any; }  = {};
   updateObj[authInfoPath] = {$each: scopes};
@@ -69,7 +69,7 @@ module.exports.updateAuthScopes = (userId:string, authServiceName:string, scopes
 }
 
 
-module.exports.updateAuthInfo = (userId:string, authServiceName:string, authInfo:any, callback:StandardCallback<User>) => {
+export let updateAuthInfo = (userId:string, authServiceName:string, authInfo:any, callback:StandardCallback<User>) => {
   var authInfoPath = "auth." + authServiceName;
   var updateObj:{ [id: string] : string; }  = {};
   updateObj[authInfoPath] = authInfo;
@@ -93,7 +93,7 @@ module.exports.updateAuthInfo = (userId:string, authServiceName:string, authInfo
   });
 }
 
-module.exports.removeAuthInfo = (userId:string, authServiceName:string, callback:StandardCallback<User>) => {
+export let removeAuthInfo = (userId:string, authServiceName:string, callback:StandardCallback<User>) => {
   var authInfoPath = "auth." + authServiceName;
   var updateObj:{ [id: string] : any; }  = {};
   updateObj[authInfoPath] = {};
@@ -118,5 +118,5 @@ module.exports.removeAuthInfo = (userId:string, authServiceName:string, callback
 }
 
 
-module.exports.findById = findById;
-module.exports.create = create;
+export let findById = findById;
+export let create = create;

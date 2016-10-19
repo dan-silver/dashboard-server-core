@@ -10,7 +10,7 @@ import {randomBytes} from 'crypto';
 var defaults = require('social-dashboard-core')
 type MetadataType = "sources" | "options"; 
 
-module.exports.getAllByUser = (userId:string, callback:StandardCallback<Dashboard[]>) => {
+export let getAllByUser = (userId:string, callback:StandardCallback<Dashboard[]>) => {
   if (!userId) {
     debugger;
     return;
@@ -81,7 +81,7 @@ function generateAccessToken(cb:StandardCallback<string>) {
     })
 }
 
-module.exports.resetAccessToken = (dashboardId:ObjectID, cb: StandardCallback<Dashboard>) => {
+export let resetAccessToken = (dashboardId:ObjectID, cb: StandardCallback<Dashboard>) => {
   generateAccessToken((err, accessToken) => {
     db.get((db) => {
       db.collection('dashboards').update(
@@ -101,7 +101,7 @@ module.exports.resetAccessToken = (dashboardId:ObjectID, cb: StandardCallback<Da
   });
 }
 
-module.exports.create = (userId:string, name:string, cb:ErrorCallback) => {
+export let create = (userId:string, name:string, cb:ErrorCallback) => {
   db.get((db) => {
     generateAccessToken((err, accessToken) => {
       db.collection('dashboards').insertOne({
@@ -123,7 +123,7 @@ module.exports.create = (userId:string, name:string, cb:ErrorCallback) => {
   // options (BACKGROUND)
 
 
-module.exports.updateMetadata = (userId:string, dashboardId:string, metadataType:MetadataType, sourceName:string, data:any, cb:ErrorCallback) => {
+export let updateMetadata = (userId:string, dashboardId:string, metadataType:MetadataType, sourceName:string, data:any, cb:ErrorCallback) => {
   // @todo make sure user owns dashboard!
   const pathToSourceActive = metadataType + "." + sourceName;
   interface SourceUpdateObj {
@@ -154,7 +154,7 @@ module.exports.updateMetadata = (userId:string, dashboardId:string, metadataType
   })
 }
 
-module.exports.findByAccessToken = (accessToken:string, cb:StandardCallback<Dashboard>) => {
+export let findByAccessToken = (accessToken:string, cb:StandardCallback<Dashboard>) => {
   db.get((db) => {
     db.collection('dashboards').find({"accessToken": {"$in": [accessToken]}}).toArray((err, dashboards) => {
       if (dashboards.length == 0) {
@@ -169,7 +169,7 @@ module.exports.findByAccessToken = (accessToken:string, cb:StandardCallback<Dash
 
 
 // given a dashboard accessToken, get the userId, then the accessToken for the source
-module.exports.getSourceAuthInfoAndConfigFromDashboardAccessToken = (dashboard:Dashboard, authKeyName:string, cb:Function) => {
+export let getSourceAuthInfoAndConfigFromDashboardAccessToken = (dashboard:Dashboard, authKeyName:string, cb:Function) => {
   if (dashboard === undefined) cb()
 
   db.get((db) => {
