@@ -116,7 +116,3 @@ export let removeAuthInfo = (userId:string, authServiceName:string, callback:Sta
 
   });
 }
-
-
-export let findById = findById;
-export let create = create;
