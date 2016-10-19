@@ -1,4 +1,4 @@
-/// <reference path="../typings/index.d.ts" />
+/// <reference path="typings/index.d.ts" />
 
 import {StandardCallback, ErrorCallback, Dashboard} from "./common"
 import * as db from "./db";
