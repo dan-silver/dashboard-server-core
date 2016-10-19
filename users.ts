@@ -8,8 +8,8 @@ import {ObjectID} from 'mongodb';
 
 let findById = (userId:string, callback:StandardCallback<User>) => {
   db.get((db) => {
-    db.collection('users').find({_id: new ObjectID(userId)}).limit(1).nextObject(function(err, user) {
-      callback(err, user);
+    db.collection('users').find({_id: new ObjectID(userId)}).toArray(function(err, user) {
+      callback(err, user[0]);
       db.close();
    });
   });
@@ -35,8 +35,8 @@ module.exports.find = (authServiceName:string, authServiceId:string, callback:St
     var pathToId = "auth." + authServiceName + ".id";
     var query:{ [id: string] : string; }  = {};
     query[pathToId] = authServiceId;
-    db.collection('users').find(query).limit(1).nextObject(function(err, user:User) {
-      callback(err, user);
+    db.collection('users').find(query).toArray(function(err, user) {
+      callback(err, user[0]);
       db.close();
    });
   });
@@ -45,7 +45,7 @@ module.exports.find = (authServiceName:string, authServiceId:string, callback:St
 let create = (user:User, cb:StandardCallback<string>) => {
   db.get((db) => {
     db.collection('users').insert(user, (err, docInserted) => {
-        cb(err, docInserted.insertedIds[0].toString());
+        cb(err, docInserted.insertedId.toString());
         db.close();
     });
   });

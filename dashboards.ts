@@ -174,8 +174,8 @@ module.exports.getSourceAuthInfoAndConfigFromDashboardAccessToken = (dashboard:D
 
   db.get((db) => {
     var userId = dashboard.userIds[0];
-    db.collection('users').find({_id:userId}).limit(1).nextObject((err, user) => {
-      cb(user.auth[authKeyName]);
+    db.collection('users').find({_id:userId}).toArray((err, users) => {
+      cb(users[0].auth[authKeyName]);
       db.close();
     });
   })
