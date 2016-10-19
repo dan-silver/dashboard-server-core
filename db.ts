@@ -1,5 +1,3 @@
-/// <reference path="typings/index.d.ts" />
-
 import * as mongo from 'mongodb';
 const MongoClient = mongo.MongoClient;
 
