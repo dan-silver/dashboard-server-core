@@ -6,7 +6,7 @@ import {ObjectID} from 'mongodb';
 import {randomBytes} from 'crypto';
 
 var defaults = require('social-dashboard-core')
-type MetadataType = "sources" | "options"; 
+export type MetadataType = "sources" | "options"; 
 
 export let getAllByUser = (userId:string, callback:StandardCallback<Dashboard[]>) => {
   if (!userId) {
