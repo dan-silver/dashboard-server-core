@@ -1,7 +1,7 @@
 export * from "./db";
-export * from "./users";
-import * as dashboards from "./dashboards";
+import * as _users from "./users";
+import * as _dashboards from "./dashboards";
 export * from "./common"
 
-
-exports.dashboards = dashboards;
+export let users = _users;
+export let dashboards = _dashboards;
