@@ -4,7 +4,7 @@ import * as db from "./db";
 
 import {ObjectID} from 'mongodb';
 
-let findById = (userId:string, callback:StandardCallback<User>) => {
+export let findById = (userId:string, callback:StandardCallback<User>) => {
   db.get((db) => {
     db.collection('users').find({_id: new ObjectID(userId)}).toArray((err, user) => {
       callback(err, user[0]);
