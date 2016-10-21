@@ -20,3 +20,5 @@ export interface Dashboard {
   userIds: [ObjectID]
   auth: { [sourceName: string] : any; }
 }
+
+export type SourceNames = "TWITTER" | "WEATHER" | "YOUTUBE"| "GOOGLE_CALENDAR";

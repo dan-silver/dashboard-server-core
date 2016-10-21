@@ -6,7 +6,7 @@ import {ObjectID} from 'mongodb';
 
 let findById = (userId:string, callback:StandardCallback<User>) => {
   db.get((db) => {
-    db.collection('users').find({_id: new ObjectID(userId)}).toArray(function(err, user) {
+    db.collection('users').find({_id: new ObjectID(userId)}).toArray((err, user) => {
       callback(err, user[0]);
       db.close();
    });
@@ -33,7 +33,7 @@ export let find = (authServiceName:string, authServiceId:string, callback:Standa
     var pathToId = "auth." + authServiceName + ".id";
     var query:{ [id: string] : string; }  = {};
     query[pathToId] = authServiceId;
-    db.collection('users').find(query).toArray(function(err, user) {
+    db.collection('users').find(query).toArray((err, user) => {
       callback(err, user[0]);
       db.close();
    });

@@ -1,4 +1,4 @@
-import {StandardCallback, ErrorCallback, Dashboard} from "./common"
+import {StandardCallback, ErrorCallback, Dashboard, SourceNames} from "./common"
 import * as db from "./db";
 
 import {ObjectID} from 'mongodb';
@@ -6,6 +6,7 @@ import {ObjectID} from 'mongodb';
 import {randomBytes} from 'crypto';
 
 var defaults = require('social-dashboard-core')
+
 export type MetadataType = "sources" | "options"; 
 
 export let getAllByUser = (userId:string, callback:StandardCallback<Dashboard[]>) => {
@@ -22,32 +23,17 @@ export let getAllByUser = (userId:string, callback:StandardCallback<Dashboard[]>
 }
 
 function getDefaultSources() {
-  return {
-    TWITTER: {
-      version: defaults.sources.TWITTER.version,
-			active: defaults.sources.TWITTER.enabledByDefault,
-			data: defaults.sources.TWITTER.defaultData,
-      // position: "left-column"
-		},
-		WEATHER: {
-      version: defaults.sources.WEATHER.version,
-			active: defaults.sources.WEATHER.enabledByDefault,
-			data: defaults.sources.WEATHER.defaultData,
-      // position: "right-column"
-		},
-		YOUTUBE: {
-      version: defaults.sources.YOUTUBE.version,
-			active: defaults.sources.YOUTUBE.enabledByDefault,
-			data: defaults.sources.YOUTUBE.defaultData,
-      // position: "middle-column"
-		},
-		GOOGLE_CALENDAR: {
-      version: defaults.sources.GOOGLE_CALENDAR.version,
-			active: defaults.sources.GOOGLE_CALENDAR.enabledByDefault,
-			data: defaults.sources.GOOGLE_CALENDAR.defaultData,
-      // position: "middle-column"
-		}
+  let sourcesToEnable:SourceNames[] = ["TWITTER", "WEATHER", "GOOGLE_CALENDAR", "YOUTUBE"];
+  let sourceObj: { [id: string] : any; }  = {};
+  for (let sourceName in sourcesToEnable) {
+    sourceObj[sourceName] = {
+      version: defaults.sources[sourceName].version,
+      active: defaults.sources[sourceName].enabledByDefault,
+      data: defaults.sources[sourceName].defaultData
+    }
   }
+
+  return sourceObj;
 }
 
 function getDefaultOptions() {
