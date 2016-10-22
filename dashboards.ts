@@ -1,5 +1,6 @@
-import {StandardCallback, ErrorCallback, Dashboard, SourceNames} from "./common"
-import * as db from "./db";
+import {common} from "./common"
+
+import {db} from "./db";
 
 import {ObjectID} from 'mongodb';
 
@@ -9,7 +10,7 @@ var defaults = require('social-dashboard-core')
 
 export type MetadataType = "sources" | "options"; 
 
-export let getAllByUser = (userId:string, callback:StandardCallback<Dashboard[]>) => {
+export let getAllByUser = (userId:string, callback:common.StandardCallback<common.Dashboard[]>) => {
   if (!userId) {
     debugger;
     return;
@@ -23,7 +24,7 @@ export let getAllByUser = (userId:string, callback:StandardCallback<Dashboard[]>
 }
 
 function getDefaultSources() {
-  let sourcesToEnable:SourceNames[] = ["TWITTER", "WEATHER", "GOOGLE_CALENDAR", "YOUTUBE"];
+  let sourcesToEnable:common.SourceNames[] = ["TWITTER", "WEATHER", "GOOGLE_CALENDAR", "YOUTUBE"];
   let sourceObj: { [id: string] : any; }  = {};
   for (let sourceName in sourcesToEnable) {
     sourceObj[sourceName] = {
@@ -58,14 +59,14 @@ function getDefaultOptions() {
   };
 }
 
-function generateAccessToken(cb:StandardCallback<string>) {
+function generateAccessToken(cb:common.StandardCallback<string>) {
     randomBytes(128, (err, buffer) => {
       const accessToken = buffer.toString('hex');
       cb(err, accessToken);
     })
 }
 
-export let resetAccessToken = (dashboardId:ObjectID, cb: StandardCallback<Dashboard>) => {
+export let resetAccessToken = (dashboardId:ObjectID, cb: common.StandardCallback<common.Dashboard>) => {
   generateAccessToken((err, accessToken) => {
     db.get((db) => {
       db.collection('dashboards').update(
@@ -85,7 +86,7 @@ export let resetAccessToken = (dashboardId:ObjectID, cb: StandardCallback<Dashbo
   });
 }
 
-export let create = (userId:string, name:string, cb:ErrorCallback) => {
+export let create = (userId:string, name:string, cb:common.ErrorCallback) => {
   db.get((db) => {
     generateAccessToken((err, accessToken) => {
       db.collection('dashboards').insertOne({
@@ -107,7 +108,7 @@ export let create = (userId:string, name:string, cb:ErrorCallback) => {
   // options (BACKGROUND)
 
 
-export let updateMetadata = (userId:string, dashboardId:string, metadataType:MetadataType, sourceName:string, data:any, cb:ErrorCallback) => {
+export let updateMetadata = (userId:string, dashboardId:string, metadataType:MetadataType, sourceName:string, data:any, cb:common.ErrorCallback) => {
   // @todo make sure user owns dashboard!
   const pathToSourceActive = metadataType + "." + sourceName;
   interface SourceUpdateObj {
@@ -138,7 +139,7 @@ export let updateMetadata = (userId:string, dashboardId:string, metadataType:Met
   })
 }
 
-export let findByAccessToken = (accessToken:string, cb:StandardCallback<Dashboard>) => {
+export let findByAccessToken = (accessToken:string, cb:common.StandardCallback<common.Dashboard>) => {
   db.get((db) => {
     db.collection('dashboards').find({"accessToken": {"$in": [accessToken]}}).toArray((err, dashboards) => {
       if (dashboards.length == 0) {
@@ -153,7 +154,7 @@ export let findByAccessToken = (accessToken:string, cb:StandardCallback<Dashboar
 
 
 // given a dashboard accessToken, get the userId, then the accessToken for the source
-export let getSourceAuthInfoAndConfigFromDashboardAccessToken = (dashboard:Dashboard, authKeyName:string, cb:Function) => {
+export let getSourceAuthInfoAndConfigFromDashboardAccessToken = (dashboard:common.Dashboard, authKeyName:string, cb:Function) => {
   if (dashboard === undefined) cb()
 
   db.get((db) => {

@@ -1,17 +1,14 @@
-import * as mongo from 'mongodb';
-const MongoClient = mongo.MongoClient;
+let url = 'mongodb://localhost:27017/social-dash';
+import * as mongo from 'mongodb'
 
-var assert = require('assert');
+export module db {
+  export interface DbCallback {
+    (db: mongo.Db):void;
+  }
 
-const url = 'mongodb://localhost:27017/social-dash';
-
-export interface DbCallback {
-  (db: mongo.Db):void;
-}
-
-export let get = (callback:DbCallback) => {
-  MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    callback(db);
-  });
+  export function get(callback:DbCallback):void {
+    mongo.MongoClient.connect(url, function(err, db) {
+      callback(db);
+    });
+  }
 }
