@@ -4,7 +4,8 @@
   "description": "Server shared code",
   "main": "lib/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "tsc"
   },
   "typings":"lib/main",
   "author": "",
@@ -13,6 +14,7 @@
     "typescript": "^2.0.3"
   },
   "files": [
+    "tsconfig.json",
     "lib/"
   ]
 }
