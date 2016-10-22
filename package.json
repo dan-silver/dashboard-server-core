@@ -5,7 +5,7 @@
   "main": "lib/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "tsc"
+    "install": "typings install && tsc"
   },
   "typings":"lib/main",
   "author": "",
