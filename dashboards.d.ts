@@ -1,5 +1,5 @@
 /// <reference path="typings/index.d.ts" />
-import { common } from "./common";
+import * as common from "./common";
 import { ObjectID } from 'mongodb';
 export declare module dashboards {
     type MetadataType = "sources" | "options";

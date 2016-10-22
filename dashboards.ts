@@ -1,6 +1,6 @@
 /// <reference path="./typings/index.d.ts" />
 
-import {common} from "./common"
+import * as common from "./common"
 
 import {db} from "./db";
 

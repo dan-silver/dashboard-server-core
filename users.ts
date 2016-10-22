@@ -1,7 +1,7 @@
 /// <reference path="./typings/index.d.ts" />
 
 import {db} from "./db";
-import {common} from "./common"
+import  * as common from "./common"
 import {ObjectID} from 'mongodb';
 
 
