@@ -1,4 +1,5 @@
 import { StandardCallback, ErrorCallback, User } from "./common";
+export declare let findById: (userId: string, callback: StandardCallback<User>) => void;
 export declare let getAuthScopes: (userId: string, cb: StandardCallback<string[]>) => void;
 export declare let find: (authServiceName: string, authServiceId: string, callback: StandardCallback<User>) => void;
 export declare let create: (user: User, cb: StandardCallback<string>) => void;
