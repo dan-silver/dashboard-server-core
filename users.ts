@@ -1,4 +1,4 @@
-import * as db from "./db";
+import {db} from "./db";
 import {common} from "./common"
 import {ObjectID} from 'mongodb';
 
