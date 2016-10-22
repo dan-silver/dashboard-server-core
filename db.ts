@@ -1,4 +1,7 @@
+/// <reference path="./typings/index.d.ts" />
+
 let url = 'mongodb://localhost:27017/social-dash';
+
 import * as mongo from 'mongodb'
 
 export module db {

@@ -1,3 +1,4 @@
+/// <reference path="typings/index.d.ts" />
 import { common } from "./common";
 export declare module users {
     let findById: (userId: string, callback: common.StandardCallback<common.User>) => void;

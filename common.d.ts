@@ -1,3 +1,4 @@
+/// <reference path="typings/index.d.ts" />
 import { ObjectID } from 'mongodb';
 export declare module common {
     interface StandardCallback<T> {
