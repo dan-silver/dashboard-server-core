@@ -1,4 +1,4 @@
-/// <reference path="typings/index.d.ts" />
+/// <reference path="../typings/index.d.ts" />
 import * as common from "./common";
 import { ObjectID } from 'mongodb';
 export declare type MetadataType = "sources" | "options";

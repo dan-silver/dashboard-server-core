@@ -1,4 +1,4 @@
-/// <reference path="typings/index.d.ts" />
+/// <reference path="../typings/index.d.ts" />
 import * as common from "./common";
 export declare let findById: (userId: string, callback: common.StandardCallback<common.User>) => void;
 export declare let getAuthScopes: (userId: string, cb: common.StandardCallback<string[]>) => void;

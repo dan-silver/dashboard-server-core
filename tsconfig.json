@@ -7,6 +7,10 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
-        "declaration": true
-    }
+        "declaration": true,
+        "outDir": "lib/"
+    },
+    "files": [
+        "./src/main.ts"
+    ]
 }

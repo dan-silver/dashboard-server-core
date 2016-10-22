@@ -1,4 +1,4 @@
-/// <reference path="typings/index.d.ts" />
+/// <reference path="../typings/index.d.ts" />
 import * as mongo from 'mongodb';
 export interface DbCallback {
     (db: mongo.Db): void;
