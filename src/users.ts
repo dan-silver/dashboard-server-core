@@ -40,10 +40,10 @@ export let find = (authServiceName:string, authServiceId:string, callback:common
   });
 };
 
-export let create = (user:common.User, cb:common.StandardCallback<string>) => {
+export let create = (user:common.User, cb:common.StandardCallback<ObjectID>) => {
   db.get((db) => {
     db.collection('users').insert(user, (err:any, docInserted:any) => {
-        cb(err, docInserted.insertedIds[0].toString());
+        cb(err, docInserted.insertedIds[0]);
         db.close();
     });
   });

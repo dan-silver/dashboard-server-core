@@ -88,12 +88,12 @@ export let resetAccessToken = (dashboardId:ObjectID, cb: common.StandardCallback
   });
 }
 
-export let create = (userId:string, name:string, cb:common.ErrorCallback) => {
+export let create = (userId:ObjectID, name:string, cb:common.ErrorCallback) => {
   db.get((db) => {
     generateAccessToken((err, accessToken) => {
       db.collection('dashboards').insertOne({
           name: name,
-          userIds: [new ObjectID(userId)],
+          userIds: [userId],
           sources: getDefaultSources(),
           options: getDefaultOptions(),
           accessToken: accessToken
