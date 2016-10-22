@@ -3,9 +3,6 @@
     "compilerOptions": {
         "noEmitOnError": false,
         "module": "commonjs",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
         "sourceMap": true,
         "declaration": true,
         "outDir": "lib/"
