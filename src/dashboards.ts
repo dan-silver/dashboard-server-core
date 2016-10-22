@@ -28,7 +28,7 @@ export let getAllByUser = (userId:string, callback:common.StandardCallback<commo
 function getDefaultSources() {
   let sourcesToEnable:common.SourceNames[] = ["TWITTER", "WEATHER", "GOOGLE_CALENDAR", "YOUTUBE"];
   let sourceObj: { [id: string] : any; }  = {};
-  for (let sourceName in sourcesToEnable) {
+  for (let sourceName of sourcesToEnable) {
     sourceObj[sourceName] = {
       version: defaults.sources[sourceName].version,
       active: defaults.sources[sourceName].enabledByDefault,
