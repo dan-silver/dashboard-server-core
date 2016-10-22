@@ -1,5 +1,3 @@
-/// <reference path="../typings/index.d.ts" />
-
 import * as common from "./common"
 
 import * as db from "./db";
