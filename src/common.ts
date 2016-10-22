@@ -9,7 +9,7 @@ export interface ErrorCallback {
 }
 
 export interface User {
-  _id: ObjectID
+  _id?: ObjectID
   displayName: string
   auth: { [serviceName: string] : any; }
 }
