@@ -4,10 +4,6 @@ import * as _dashboards from "./dashboards";
 import * as _common from "./common"
 
 export let users = _users;
-export module foo {
-  export let users = _users;
-}
-
-export module fooCommon {
-  export let common = _common;
-}
+export let common = _common;
+export let dashboards = _dashboards;
+export let db = _db;
