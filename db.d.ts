@@ -1,8 +1,6 @@
 /// <reference path="typings/index.d.ts" />
 import * as mongo from 'mongodb';
-export declare module db {
-    interface DbCallback {
-        (db: mongo.Db): void;
-    }
-    function get(callback: DbCallback): void;
+export interface DbCallback {
+    (db: mongo.Db): void;
 }
+export declare function get(callback: DbCallback): void;
