@@ -12,9 +12,5 @@
   "license": "ISC",
   "dependencies": {
     "typescript": "^2.0.3"
-  },
-  "files": [
-    "tsconfig.json",
-    "lib/"
-  ]
+  }
 }
