@@ -4,7 +4,7 @@ import * as db from "./db";
 import  * as common from "./common"
 import {ObjectID} from 'mongodb';
 
-export let findById = (userId:ObjectID, callback:common.StandardCallback<common.User>) => {
+export let findById = (userId:string, callback:common.StandardCallback<common.User>) => {
   db.get((db) => {
     db.collection('users').find({_id: userId}).toArray((err, user) => {
       callback(err, user[0]);
@@ -14,7 +14,7 @@ export let findById = (userId:ObjectID, callback:common.StandardCallback<common.
 };
 
 
-export let getAuthScopes = (userId:ObjectID, cb:common.StandardCallback<string[]>) => {
+export let getAuthScopes = (userId:string, cb:common.StandardCallback<string[]>) => {
   findById(userId, (err, user) => {
       var allScopes:string[] = [];
 
@@ -49,7 +49,7 @@ export let create = (user:common.User, cb:common.StandardCallback<ObjectID>) => 
   });
 }
 
-export let updateAuthScopes = (userId:ObjectID, authServiceName:string, scopes:string[], callback:common.ErrorCallback) => {
+export let updateAuthScopes = (userId:string, authServiceName:string, scopes:string[], callback:common.ErrorCallback) => {
   var authInfoPath = "auth." + authServiceName + ".scopes";
   let updateObj:{ [id: string] : any; }  = {};
   updateObj[authInfoPath] = {$each: scopes};
@@ -67,7 +67,7 @@ export let updateAuthScopes = (userId:ObjectID, authServiceName:string, scopes:s
 }
 
 
-export let updateAuthInfo = (userId:ObjectID, authServiceName:string, authInfo:any, callback:common.StandardCallback<common.User>) => {
+export let updateAuthInfo = (userId:string, authServiceName:string, authInfo:any, callback:common.StandardCallback<common.User>) => {
   var authInfoPath = "auth." + authServiceName;
   var updateObj:{ [id: string] : string; }  = {};
   updateObj[authInfoPath] = authInfo;
@@ -91,7 +91,7 @@ export let updateAuthInfo = (userId:ObjectID, authServiceName:string, authInfo:a
   });
 }
 
-export let removeAuthInfo = (userId:ObjectID, authServiceName:string, callback:common.StandardCallback<common.User>) => {
+export let removeAuthInfo = (userId:string, authServiceName:string, callback:common.StandardCallback<common.User>) => {
   var authInfoPath = "auth." + authServiceName;
   var updateObj:{ [id: string] : any; }  = {};
   updateObj[authInfoPath] = {};
