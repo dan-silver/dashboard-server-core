@@ -1,4 +1,3 @@
-/// <reference path="../typings/index.d.ts" />
 import { ObjectID } from 'mongodb';
 export interface StandardCallback<T> {
     (err: any, data?: T): void;
