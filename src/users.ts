@@ -1,3 +1,5 @@
+/// <reference path="../typings/index.d.ts" />
+
 import * as db from "./db";
 import  * as common from "./common"
 import {ObjectID} from 'mongodb';
@@ -47,7 +49,7 @@ export let create = (user:common.User, cb:common.StandardCallback<ObjectID>) => 
   });
 }
 
-export let updateAuthScopes = (userId:string, authServiceName:string, scopes:string[], callback:common.ErrorCallback) => {
+export let updateAuthScopes = (userId:ObjectID, authServiceName:string, scopes:string[], callback:common.ErrorCallback) => {
   var authInfoPath = "auth." + authServiceName + ".scopes";
   let updateObj:{ [id: string] : any; }  = {};
   updateObj[authInfoPath] = {$each: scopes};
@@ -55,7 +57,7 @@ export let updateAuthScopes = (userId:string, authServiceName:string, scopes:str
 
   db.get((db) => {
     db.collection('users').update({
-      _id: new ObjectID(userId)
+      _id: userId
     },{
       $addToSet: updateObj,
     }, function(err) {
