@@ -6,7 +6,7 @@ import {ObjectID} from 'mongodb';
 
 export let findById = (userId:string, callback:common.StandardCallback<common.User>) => {
   db.get((db) => {
-    db.collection('users').find({_id: userId}).toArray((err, user) => {
+    db.collection('users').find({_id: new ObjectID(userId)}).toArray((err, user) => {
       callback(err, user[0]);
       db.close();
   });
@@ -57,7 +57,7 @@ export let updateAuthScopes = (userId:string, authServiceName:string, scopes:str
 
   db.get((db) => {
     db.collection('users').update({
-      _id: userId
+      _id: new ObjectID(userId)
     },{
       $addToSet: updateObj,
     }, function(err) {
@@ -75,7 +75,7 @@ export let updateAuthInfo = (userId:string, authServiceName:string, authInfo:any
 
   db.get((db) => {
     db.collection('users').update({
-      _id: userId
+      _id: new ObjectID(userId)
     },{
       $set: updateObj,
     }, function(err) {
@@ -98,7 +98,7 @@ export let removeAuthInfo = (userId:string, authServiceName:string, callback:com
 
   db.get((db) => {
     db.collection('users').update({
-      _id: userId
+      _id: new ObjectID(userId)
     },{
       $unset: updateObj,
     }, function(err) {
