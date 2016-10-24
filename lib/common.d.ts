@@ -21,4 +21,4 @@ export interface Dashboard {
         [sourceName: string]: any;
     };
 }
-export declare type SourceNames = "TWITTER" | "WEATHER" | "YOUTUBE" | "GOOGLE_CALENDAR";
+export declare type SourceNames = "TWITTER" | "WEATHER" | "YOUTUBE" | "GOOGLE_CALENDAR" | "COUNTDOWN";
