@@ -3,7 +3,6 @@ import * as common from "./common"
 import * as db from "./db";
 
 import {ObjectID} from 'mongodb';
-
 import {randomBytes} from 'crypto';
 
 var defaults = require('social-dashboard-core')
@@ -12,7 +11,7 @@ export type MetadataType = "sources" | "options";
 
 export let getAllByUser = (userId:string, callback:common.StandardCallback<common.Dashboard[]>) => {
   if (!userId) {
-    debugger;
+    callback("no userId provided in getAllByUser()");
     return;
   }
   db.get((db) => {
@@ -47,6 +46,10 @@ function getDefaultOptions() {
         color: defaults.options.BACKGROUND.options.COLOR.default,
         slideshowSpeed: defaults.options.BACKGROUND.options.SLIDESHOW.speed
       }
+    },
+    THEME: {
+      version: defaults.options["THEME"].version,
+      data: defaults.sources["THEME"].defaultData
     }
     // , LAYOUT: {
     //   version: defaults.options.LAYOUT.version,
