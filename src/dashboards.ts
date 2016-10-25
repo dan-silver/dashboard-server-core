@@ -49,7 +49,7 @@ function getDefaultOptions() {
     },
     THEME: {
       version: defaults.options["THEME"].version,
-      data: defaults.sources["THEME"].defaultData
+      data: defaults.options["THEME"].defaultData
     }
     // , LAYOUT: {
     //   version: defaults.options.LAYOUT.version,
