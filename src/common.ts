@@ -23,4 +23,11 @@ export interface Dashboard {
   auth: { [sourceName: string] : any; }
 }
 
-export type SourceNames = "TWITTER" | "WEATHER" | "YOUTUBE"| "GOOGLE_CALENDAR" | "COUNTDOWN";
+export type SourceNames =
+  "TWITTER" |
+  "WEATHER" |
+  "YOUTUBE"|
+  "GOOGLE_CALENDAR" |
+  "COUNTDOWN" |
+  "RSS" |
+  "CLOCK";

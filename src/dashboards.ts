@@ -28,8 +28,11 @@ function getDefaultSources() {
     "WEATHER",
     "GOOGLE_CALENDAR",
     "YOUTUBE",
-    "COUNTDOWN"
+    "COUNTDOWN",
+    "RSS",
+    "CLOCK"
   ];
+
   let sourceObj: { [id: string] : any; }  = {};
   for (let sourceName of sourcesToEnable) {
     sourceObj[sourceName] = {
