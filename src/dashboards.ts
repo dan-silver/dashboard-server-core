@@ -23,7 +23,13 @@ export let getAllByUser = (userId:string, callback:common.StandardCallback<commo
 }
 
 function getDefaultSources() {
-  let sourcesToEnable:common.SourceNames[] = ["TWITTER", "WEATHER", "GOOGLE_CALENDAR", "YOUTUBE", "COUNTDOWN"];
+  let sourcesToEnable:common.SourceNames[] = [
+    "TWITTER",
+    "WEATHER",
+    "GOOGLE_CALENDAR",
+    "YOUTUBE",
+    "COUNTDOWN"
+  ];
   let sourceObj: { [id: string] : any; }  = {};
   for (let sourceName of sourcesToEnable) {
     sourceObj[sourceName] = {
@@ -37,29 +43,18 @@ function getDefaultSources() {
 }
 
 function getDefaultOptions() {
-  return {
-    BACKGROUND: {
-      version: defaults.options.BACKGROUND.version,
-      data: {
-        type: defaults.options.BACKGROUND.options.SLIDESHOW.value,
-        imageURL: defaults.options.BACKGROUND.options.IMAGE_URL.default,
-        color: defaults.options.BACKGROUND.options.COLOR.default,
-        slideshowSpeed: defaults.options.BACKGROUND.options.SLIDESHOW.speed
-      }
-    },
-    THEME: {
-      version: defaults.options["THEME"].version,
-      data: defaults.options["THEME"].defaultData
-    }
-    // , LAYOUT: {
-    //   version: defaults.options.LAYOUT.version,
-    //   data: {
-    //     layout: "3-col",
-    //     version: 1
-    //   }
-    // }
+  let optionsToEnable:string[] = [
+    "BACKGROUND",
+    "THEME"
+  ];
 
-  };
+  let optionObj: { [id: string] : any; }  = {};
+  for (let optionName of optionsToEnable) {
+    optionObj[optionName] = {
+      version: defaults.sources[optionName].version,
+      data: defaults.sources[optionName].defaultData
+    }
+  }
 }
 
 function generateAccessToken(cb:common.StandardCallback<string>) {
