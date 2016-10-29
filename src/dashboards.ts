@@ -58,6 +58,7 @@ function getDefaultOptions() {
       data: defaults.options[optionName].defaultData
     }
   }
+  return optionObj;
 }
 
 function generateAccessToken(cb:common.StandardCallback<string>) {
