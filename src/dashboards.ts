@@ -54,8 +54,8 @@ function getDefaultOptions() {
   let optionObj: { [id: string] : any; }  = {};
   for (let optionName of optionsToEnable) {
     optionObj[optionName] = {
-      version: defaults.sources[optionName].version,
-      data: defaults.sources[optionName].defaultData
+      version: defaults.options[optionName].version,
+      data: defaults.options[optionName].defaultData
     }
   }
 }
