@@ -48,7 +48,8 @@ function getDefaultSources() {
 function getDefaultOptions() {
   let optionsToEnable:string[] = [
     "BACKGROUND",
-    "THEME"
+    "THEME",
+    "CARDS"
   ];
 
   let optionObj: { [id: string] : any; }  = {};
