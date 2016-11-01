@@ -49,6 +49,18 @@ export let create = (user:common.User, cb:common.StandardCallback<ObjectID>) => 
   });
 }
 
+export let deleteAccount = (userId:string, callback:common.StandardCallback<any>) => {
+  db.get((db) => {
+    db.collection('users').deleteOne({
+      _id: new ObjectID(userId)
+    }, function(err) {
+      callback(err);
+      db.close();
+    });
+  });
+
+}
+
 export let updateAuthScopes = (userId:string, authServiceName:string, scopes:string[], callback:common.ErrorCallback) => {
   var authInfoPath = "auth." + authServiceName + ".scopes";
   let updateObj:{ [id: string] : any; }  = {};

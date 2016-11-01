@@ -5,7 +5,7 @@ import * as db from "./db";
 import {ObjectID} from 'mongodb';
 import {randomBytes} from 'crypto';
 
-var defaults = require('social-dashboard-core')
+const defaults = require('social-dashboard-core')
 
 export type MetadataType = "sources" | "options"; 
 
