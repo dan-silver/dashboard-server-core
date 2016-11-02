@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "typings": "^1.5.0",
     "typescript": "^2.0.3",
     "social-dashboard-core": "https://github.com/dan-silver/dashboard-core.git"
   }
