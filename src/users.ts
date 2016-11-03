@@ -4,10 +4,16 @@ import * as db from "./db";
 import  * as common from "./common"
 import {ObjectID} from 'mongodb';
 
+function deserializeUser(user:any):common.User {
+  if (user)
+    user._id = user._id.toString();
+  return user;
+}
+
 export let findById = (userId:string, callback:common.StandardCallback<common.User>) => {
   db.get((db) => {
     db.collection('users').find({_id: new ObjectID(userId)}).toArray((err, user) => {
-      callback(err, user[0]);
+      callback(err, deserializeUser(user[0]));
       db.close();
   });
   });
@@ -34,16 +40,16 @@ export let find = (authServiceName:string, authServiceId:string, callback:common
     var query:{ [id: string] : string; }  = {};
     query[pathToId] = authServiceId;
     db.collection('users').find(query).toArray((err, user) => {
-      callback(err, user[0]);
+      callback(err, deserializeUser(user[0]));
       db.close();
   });
   });
 };
 
-export let create = (user:common.User, cb:common.StandardCallback<ObjectID>) => {
+export let create = (user:common.User, cb:common.StandardCallback<string>) => {
   db.get((db) => {
     db.collection('users').insert(user, (err:any, docInserted:any) => {
-        cb(err, docInserted.insertedIds[0]);
+        cb(err, docInserted.insertedIds[0].toString());
         db.close();
     });
   });
