@@ -89,7 +89,7 @@ export function getGoogleAccessTokenFromRefreshToken(userId:string, callback:com
 
 }
 
-export function setAccessToken(userId:string, authServiceName:string, accessToken:string, expiresAt:Date) {
+export function setAccessToken(userId:string, authServiceName:string, accessToken:string, expiresAt?:Date) {
   cache[userId] = cache[userId] || {};
   cache[userId][authServiceName] = {
     accessToken: accessToken,
