@@ -11,7 +11,7 @@ export interface ErrorCallback {
 }
 
 export interface User {
-  _id?: ObjectID
+  _id?: string
   displayName: string
   auth: { [serviceName: string] : any; }
 }
