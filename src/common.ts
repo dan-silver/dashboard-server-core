@@ -31,3 +31,6 @@ export type SourceNames =
   "COUNTDOWN" |
   "RSS" |
   "CLOCK";
+
+
+export const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:4321/social-dash";
