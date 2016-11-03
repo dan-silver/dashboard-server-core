@@ -6,6 +6,8 @@ var request = require('superagent');
 import  * as common from "./common"
 import * as users from "./users"
 
+import {ObjectID} from 'mongodb';
+
 
 /*
  {
@@ -37,9 +39,10 @@ export function init(_GOOGLE_CLIENT_ID: string, _GOOGLE_CLIENT_SECRET:string) {
 }
 
 
-export function getGoogleAccessToken(userId:string, callback:common.StandardCallback<string>) {
-  if (userId in cache && "google" in cache[userId]) {
-    let authInfo = cache[userId]["google"]
+export function getGoogleAccessToken(userId:ObjectID, callback:common.StandardCallback<string>) {
+  let id=userId.toString();
+  if (id in cache && "google" in cache[id]) {
+    let authInfo = cache[id]["google"]
     if (authInfo.expiresAt > new Date((new Date()).getTime() + 5*60000)) { //expires at least 5 minutes from now
       callback(null, authInfo.accessToken);
       return;
@@ -52,7 +55,7 @@ export function getGoogleAccessToken(userId:string, callback:common.StandardCall
 }
 
 
-export function getGoogleAccessTokenFromRefreshToken(userId:string, callback:common.StandardCallback<string>) {
+export function getGoogleAccessTokenFromRefreshToken(userId:ObjectID, callback:common.StandardCallback<string>) {
   if (GOOGLE_CLIENT_ID == null) {
     callback({err: 'GOOGLE_CLIENT_ID not set'});
     return;
@@ -89,9 +92,10 @@ export function getGoogleAccessTokenFromRefreshToken(userId:string, callback:com
 
 }
 
-export function setAccessToken(userId:string, authServiceName:string, accessToken:string, expiresAt?:Date) {
-  cache[userId] = cache[userId] || {};
-  cache[userId][authServiceName] = {
+export function setAccessToken(userId:ObjectID, authServiceName:string, accessToken:string, expiresAt?:Date) {
+  let id = userId.toString();
+  cache[id] = cache[id] || {};
+  cache[id][authServiceName] = {
     accessToken: accessToken,
     expiresAt: expiresAt ? expiresAt : new Date((new Date()).getTime() + 1800 * 1000) //if no expiresAt, set +30min
   }
