@@ -34,5 +34,5 @@ export type SourceNames =
 
 
 export const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/social-dash"
-export const DASH_DATA_URL = process.env.DASH_DATA_URL || "localhost:4000"
-export const DASH_VIEW_URL = process.env.DASH_DATA_URL || "localhost:5000"
+export const DASH_DATA_URL = process.env.DASH_DATA_URL || "http://localhost:4000"
+export const DASH_VIEW_URL = process.env.DASH_DATA_URL || "http://localhost:5000"
