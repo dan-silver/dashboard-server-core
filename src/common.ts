@@ -1,6 +1,7 @@
 /// <reference path="../typings/index.d.ts" />
 
 import {ObjectID} from 'mongodb';
+const defaults = require('social-dashboard-core')
 
 export interface StandardCallback<T> {
   (err:any, data?:T):void;
@@ -32,8 +33,8 @@ export type SourceNames =
   "RSS" |
   "CLOCK";
 
+let URL = process.env.DOCKERCLOUD_SERVICE_HOSTNAME ? defaults.URL.PROD : defaults.URL.DEV;
 
-// must export in main.ts
-export const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/social-dash"
-export const DASH_DATA_URL = process.env.DASH_DATA_URL || "http://localhost:4000"
-export const DASH_VIEW_URL = process.env.DASH_VIEW_URL || "http://localhost:5000"
+export const MONGO_URL = URL.DEV.MONGO;
+export const DASH_DATA_URL = URL.DEV.DASH_DATA;
+export const DASH_VIEW_URL = URL.DEV.DASH_VIEW;
