@@ -35,6 +35,6 @@ export type SourceNames =
 
 let URL = process.env.DOCKERCLOUD_SERVICE_HOSTNAME ? defaults.URL.PROD : defaults.URL.DEV;
 
-export const MONGO_URL = URL.DEV.MONGO;
-export const DASH_DATA_URL = URL.DEV.DASH_DATA;
-export const DASH_VIEW_URL = URL.DEV.DASH_VIEW;
+export const MONGO_URL = URL.MONGO;
+export const DASH_DATA_URL = URL.DASH_DATA;
+export const DASH_VIEW_URL = URL.DASH_VIEW;
