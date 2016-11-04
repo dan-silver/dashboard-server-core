@@ -23,3 +23,4 @@ export interface Dashboard {
 }
 export declare type SourceNames = "TWITTER" | "WEATHER" | "YOUTUBE" | "GOOGLE_CALENDAR" | "COUNTDOWN" | "RSS" | "CLOCK";
 export declare const MONGO_URL: any;
+export declare const DASH_DATA_URL: any;
