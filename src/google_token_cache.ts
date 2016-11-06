@@ -53,7 +53,6 @@ export function getGoogleAccessToken(userId:string, callback:common.StandardCall
 
 }
 
-
 export function getGoogleAccessTokenFromRefreshToken(userId:string, callback:common.StandardCallback<string>) {
   if (GOOGLE_CLIENT_ID == null) {
     callback({err: 'GOOGLE_CLIENT_ID not set'});
@@ -85,7 +84,7 @@ export function getGoogleAccessTokenFromRefreshToken(userId:string, callback:com
         } else {
           callback(null, res.body.access_token);
         }
-        // Calling the end function will send the request
+
       });
   })
 
