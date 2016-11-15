@@ -38,6 +38,10 @@ export function init(_GOOGLE_CLIENT_ID: string, _GOOGLE_CLIENT_SECRET:string) {
   GOOGLE_CLIENT_SECRET = _GOOGLE_CLIENT_SECRET;
 }
 
+export function clearAccessTokenCache(userId) {
+  delete cache[userId];
+}
+
 
 export function getGoogleAccessToken(userId:string, callback:common.StandardCallback<string>) {
   if (userId in cache && "google" in cache[userId]) {
