@@ -22,6 +22,9 @@ export let findById = (userId:string, callback:common.StandardCallback<common.Us
 
 export let getAuthScopes = (userId:string, cb:common.StandardCallback<string[]>) => {
   findById(userId, (err, user) => {
+      if (err) {
+        cb(err);
+      }
       var allScopes:string[] = [];
 
       for (var source in user.auth) {
