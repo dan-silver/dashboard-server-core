@@ -15,7 +15,7 @@ export let findById = (userId:string, callback:common.StandardCallback<common.Us
     db.collection('users').find({_id: new ObjectID(userId)}).toArray((err, user) => {
       callback(err, deserializeUser(user[0]));
       db.close();
-  });
+    });
   });
 };
 
@@ -23,11 +23,11 @@ export let findById = (userId:string, callback:common.StandardCallback<common.Us
 export let getAuthScopes = (userId:string, cb:common.StandardCallback<string[]>) => {
   findById(userId, (err, user) => {
       if (err) {
-        cb(err);
+        return cb(err);
       }
 
       if (user === undefined) {
-        cb({err: "No user found"})
+        return cb({err: "No user found"})
       }
 
       var allScopes:string[] = [];
