@@ -25,6 +25,11 @@ export let getAuthScopes = (userId:string, cb:common.StandardCallback<string[]>)
       if (err) {
         cb(err);
       }
+
+      if (user === undefined) {
+        cb({err: "No user found"})
+      }
+
       var allScopes:string[] = [];
 
       for (var source in user.auth) {
